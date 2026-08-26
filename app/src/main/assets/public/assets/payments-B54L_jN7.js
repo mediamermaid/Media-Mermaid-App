@@ -1,0 +1,1 @@
+import{c as e,a as c}from"./index-ztxfj0bM.js";const r=e({method:"POST"}).handler(c("d891ddebb71c62bbcb8d06185a59a4a0389309ed00a8581ce923ce99c026d398")),d=e({method:"GET"}).handler(c("cbe8df6a91e145b17ee923e8c98e226996968f4828619ce461be956ccbc6751a"));export{r as c,d as g};
