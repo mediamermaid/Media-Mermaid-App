@@ -1,0 +1,15 @@
+{
+	"appId": "com.emblematic.app",
+	"appName": "Emblematic",
+	"webDir": "dist/client",
+	"server": {
+		"url": "https://8e80b5618dc858342b0b7f2bc1ef67ff.ctonew.app",
+		"cleartext": true
+	},
+	"ios": {
+		"contentInset": "always"
+	},
+	"android": {
+		"allowMixedContent": true
+	}
+}

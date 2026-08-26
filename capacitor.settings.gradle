@@ -1,0 +1,4 @@
+// Capacitor Android core library — embedded locally so the project is
+// self-contained and builds without the surrounding node_modules tree.
+include ':capacitor-android'
+project(':capacitor-android').projectDir = new File('./capacitor-android')
