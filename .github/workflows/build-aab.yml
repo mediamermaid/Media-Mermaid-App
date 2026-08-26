@@ -28,17 +28,17 @@ jobs:
           sdkmanager "platforms;android-36" "build-tools;36.0.0"
           yes | sdkmanager --licenses > /dev/null 2>&1 || true
 
-      - name: Configure release signing (optional)
+      - name: Configure release signing
         env:
-          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         run: |
-          if [ -n "$KEYSTORE_BASE64" ] && [ -n "$KEYSTORE_PASSWORD" ]; then
+          if [ -n "$KEYSTORE_PASSWORD" ] && [ -f "keystore/keystore-base64.txt" ]; then
             mkdir -p "$RUNNER_TEMP"
-            echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/release.jks"
+            base64 --decode keystore/keystore-base64.txt > "$RUNNER_TEMP/release.jks"
             echo "Release keystore configured."
           else
             echo "Signing secrets not set — building an UNSIGNED release bundle."
+            exit 1
           fi
 
       - name: Make gradlew executable
@@ -46,7 +46,6 @@ jobs:
 
       - name: Build release AAB
         env:
-          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}

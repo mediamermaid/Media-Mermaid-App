@@ -1,12 +1,11 @@
 apply plugin: 'com.android.application'
 
 // Release signing is configured ONLY when the environment supplies the
-// KEYSTORE_BASE64 and KEYSTORE_PASSWORD variables (set by the CI workflow
-// from GitHub secrets). Without them the release build is produced unsigned,
-// which is the expected first-run outcome.
-def ksBase64 = System.getenv('KEYSTORE_BASE64')
+// KEYSTORE_PASSWORD variable (set by the CI workflow from GitHub secrets).
+// The keystore file itself is committed to the repo at keystore/keystore-base64.txt
+// and decoded by the workflow into $RUNNER_TEMP/release.jks (or build/keystore locally).
 def ksPassword = System.getenv('KEYSTORE_PASSWORD')
-def keystoreConfigured = ksBase64 != null && !ksBase64.isEmpty() && ksPassword != null && !ksPassword.isEmpty()
+def keystoreConfigured = ksPassword != null && !ksPassword.isEmpty()
 
 android {
     namespace = "com.emblematic.app"
