@@ -34,8 +34,8 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         run: |
           if [ -n "$KEYSTORE_BASE64" ] && [ -n "$KEYSTORE_PASSWORD" ]; then
-            mkdir -p "$RUNNER_TEMP/keystore"
-            echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/keystore/release.jks"
+            mkdir -p "$RUNNER_TEMP"
+            echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/release.jks"
             echo "Release keystore configured."
           else
             echo "Signing secrets not set — building an UNSIGNED release bundle."
