@@ -29,8 +29,8 @@ android {
                 def ksDir = System.getenv('RUNNER_TEMP') ?: file("${buildDir}/keystore").path
                 storeFile = file("${ksDir}/release.jks")
                 storePassword = System.getenv('KEYSTORE_PASSWORD')
-                keyAlias = System.getenv('KEY_ALIAS') ?: 'emblematic'
-                keyPassword = System.getenv('KEY_PASSWORD') ?: System.getenv('KEYSTORE_PASSWORD')
+                keyAlias = 'emblematic'
+                keyPassword = System.getenv('KEYSTORE_PASSWORD')
             }
         }
     }
