@@ -4,7 +4,9 @@ apply plugin: 'com.android.application'
 // KEYSTORE_BASE64 and KEYSTORE_PASSWORD variables (set by the CI workflow
 // from GitHub secrets). Without them the release build is produced unsigned,
 // which is the expected first-run outcome.
-def keystoreConfigured = System.getenv('KEYSTORE_BASE64') != null && System.getenv('KEYSTORE_PASSWORD') != null
+def ksBase64 = System.getenv('KEYSTORE_BASE64')
+def ksPassword = System.getenv('KEYSTORE_PASSWORD')
+def keystoreConfigured = ksBase64 != null && !ksBase64.isEmpty() && ksPassword != null && !ksPassword.isEmpty()
 
 android {
     namespace = "com.emblematic.app"
